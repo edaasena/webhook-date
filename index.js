@@ -38,7 +38,7 @@ restService.post("/date", function(req, res) {
         speech = newDate.toLocaleDateString();
     }
     else if(text.indexOf("bugün") > -1){
-        speech=myDate.toLocaleDateString();
+        speech=today.toLocaleDateString();
     }
 
     return res.json({
