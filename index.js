@@ -22,19 +22,23 @@ restService.post("/date", function(req, res) {
       ? req.body.result.parameters.dateText
       : "";
 
-    var myDate = new Date();
+    var today = new Date();
     var speech = "";
     if(text.indexOf("yarın") > -1){
-        myDate.setTime( myDate.getTime() + 1 * 86400000 );
+        //myDate.setTime( myDate.getTime() + 1 * 86400000 );
+        var newDate = new Date(today.getTime() + (1*86400000));
+        speech = newDate.toLocaleDateString();
     }
     else if(text.indexOf("dün") > -1){
-        myDate.setTime( myDate.getTime() - 1 * 86400000 );
+        var newDate = new Date(today.getTime() - (1*86400000));
+        speech = newDate.toLocaleDateString();
     }
-    else if(text.indexOf("haftaya bugün") > -1){
-        myDate.setTime( myDate.getTime() + 7 * 86400000 );
+    else if(text.indexOf("haftaya bugün") > -1 || text.indexOf("bir hafta sonra") > -1){
+        var newDate = new Date(today.getTime() + (7*86400000));
+        speech = newDate.toLocaleDateString();
     }
     else if(text.indexOf("bugün") > -1){
-        speech=myDate;
+        speech=myDate.toLocaleDateString();
     }
 
     return res.json({
