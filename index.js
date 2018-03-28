@@ -25,7 +25,6 @@ restService.post("/date", function(req, res) {
     var today = new Date();
     var speech = "";
     if(text.indexOf("yarın") > -1){
-        //myDate.setTime( myDate.getTime() + 1 * 86400000 );
         var newDate = new Date(today.getTime() + (1*86400000));
         speech = newDate.toLocaleDateString();
     }
